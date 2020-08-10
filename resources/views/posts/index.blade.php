@@ -17,6 +17,7 @@
                 <ul>
                     @forelse ($posts as $post)
                         <li>
+                            <img src="/storage/{{ $post->picture }}" width="100px" height="100px">
                             {{ $post->content }}
                         </li>
                     @empty
