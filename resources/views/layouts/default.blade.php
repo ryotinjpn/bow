@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8">
       <title>@yield('title')</title>
-      <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+      <link rel="stylesheet" href="{{ asset('/css/reset.css') }}" >
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   </head>
   <body>
