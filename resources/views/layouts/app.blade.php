@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -18,7 +18,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('/css/pages.css') }}">
-  {{--   <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    {{--
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ asset('/css/reset.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
@@ -30,9 +31,22 @@
             <nav class="icons_bar">
                 <a href="{{ url('/') }}"><img class="logo_image" src="images/logo.png"></a>
                 <ul class="nav navbar-nav navbar-right icons_bar_rigth">
-                    <li>
-                        <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt fa_icon"></i>
-                        </a></li>
+                    @auth
+                        {{-- <li><a href="#"><i class="fas fa-user fa_icon"></i></a></li>
+                        <li><a href="#"><i class="fas fa-dog fa_icon"></i></a></li>
+                        <li><a href="#"><i class="fas fa-hands-helping fa_icon"></i></a></li>
+                        <li><a href="#"><i class="fas fa-cog fa_icon"></i></a></li> --}}
+                        <li>
+                            <a href="{{ route('logout') }}" class="fas fa-sign-out-alt fa_icon" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            </a>
+                        </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <li><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt fa_icon"></i></a></li>
+                    @endauth
                 </ul>
             </nav>
         </div>
