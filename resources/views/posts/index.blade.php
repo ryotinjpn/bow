@@ -10,7 +10,7 @@
                     {{ csrf_field() }}
                     <p>
                         <textarea name="content" placeholder="キャプションを書く">{{ old('content') }}</textarea>
-                        <textarea name="picture" placeholder="picture">{{ old('picture') }}</textarea>
+                        <input accept="image/jpeg,image/gif,image/png,video/*" type="file" name="picture" id="post_picture">
                         @if ($errors->has('content'))
                             <span class="error">{{ $errors->first('content') }}</span>
                         @endif

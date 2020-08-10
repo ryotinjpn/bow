@@ -37,12 +37,16 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'content'=>'required',
+            'picture'=>'required'
+        ]);
         $post = new Post();
         $post->content = $request->content;
         $post->picture = $request->picture;
         $post->user_id = Auth::user()->id;
         $post->save();
-        return redirect('/');
+        return redirect('/posts');
     }
 
     /**
