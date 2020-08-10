@@ -29,7 +29,11 @@
     <header class="navbar navbar-fixed-top" style="background-color: #f0f0f0;">
         <div class="icons">
             <nav class="icons_bar">
-                <a href="{{ url('/') }}"><img class="logo_image" src="images/logo.png"></a>
+                @auth
+                    <a href="{{ url('/posts') }}"><img class="logo_image" src="images/logo.png"></a>
+                @else
+                    <a href="{{ url('/') }}"><img class="logo_image" src="images/logo.png"></a>
+                @endauth
                 <ul class="nav navbar-nav navbar-right icons_bar_rigth">
                     @auth
                         {{-- <li><a href="#"><i class="fas fa-user fa_icon"></i></a></li>
@@ -38,7 +42,7 @@
                         <li><a href="#"><i class="fas fa-cog fa_icon"></i></a></li> --}}
                         <li>
                             <a href="{{ route('logout') }}" class="fas fa-sign-out-alt fa_icon" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                             </a>
                         </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
