@@ -6,14 +6,11 @@
     @auth
         <div class="container">
             <div class="main_view">
-                <form method="post" action="{{ url('/posts') }}">
+                <form method="post" action="{{ url('/posts') }}"  enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <p>
                         <textarea name="content" placeholder="キャプションを書く">{{ old('content') }}</textarea>
-                        <input accept="image/jpeg,image/gif,image/png,video/*" type="file" name="picture" id="post_picture">
-                        @if ($errors->has('content'))
-                            <span class="error">{{ $errors->first('content') }}</span>
-                        @endif
+                        <input type="file" id="file" name="picture" class="form-control">
                     </p>
                     <input type="submit" value="投稿する">
                 </form>

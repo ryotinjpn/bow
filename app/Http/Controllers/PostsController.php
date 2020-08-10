@@ -43,7 +43,9 @@ class PostsController extends Controller
         ]);
         $post = new Post();
         $post->content = $request->content;
-        $post->picture = $request->picture;
+        $file_name = $request->file('picture')->getClientOriginalName();
+        $request->file('picture')->storeAs('public',$file_name);
+        $post->picture = $file_name;
         $post->user_id = Auth::user()->id;
         $post->save();
         return redirect('/posts');
