@@ -3,5 +3,9 @@
 @section('title', 'BOW')
 
 @section('content')
-  <img src="images/top.jpg">
+<div class="center">
+  <div class="top_image">
+    <img class="top_dog" src="images/dogtop.jpg">
+  </div>
+</div>
 @endsection
