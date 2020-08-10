@@ -22,7 +22,7 @@ body>div.background {
 
 body {
   padding-top: 50px;
-  font-family: 'Open Sans', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック", "メイリオ", "Meiryo", "Osaka", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-family: "-apple-system","BlinkMacSystemFont","Helvetica Neue","ProN W3","Hiragino Kaku Gothic ProN","Arial","Meiryo,sans-serif";
   color: #5e5e5e;
 }
 
@@ -97,7 +97,6 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 100%;
   margin: 0 10vw;
 }
@@ -152,8 +151,8 @@ li {
 }
 
 .top_btn {
-  color: #764B0A;
-  border: 3px solid #764B0A;
+  color: #000000;
+  border: 3px solid #000000;
   width: 70%;
   font-size: 20px;
   font-weight: bold;
