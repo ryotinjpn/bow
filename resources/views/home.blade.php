@@ -10,18 +10,13 @@
                 <form method="post" action="{{ url('/posts') }}">
                     {{ csrf_field() }}
                     <p>
-                        <input type="text" name="title" placeholder="enter title" value="{{ old('title') }}">
-                        @if ($errors->has('title'))
-                            <span class="error">{{ $errors->first('title') }}</span>
+                        <textarea name="content" placeholder="キャプションを書く">{{ old('content') }}</textarea>
+                        <textarea name="picture" placeholder="picture">{{ old('picture') }}</textarea>
+                        @if ($errors->has('content'))
+                            <span class="error">{{ $errors->first('content') }}</span>
                         @endif
                     </p>
-                    <p>
-                        <textarea name="body" placeholder="enter body">{{ old('body') }}</textarea>
-                        @if ($errors->has('body'))
-                            <span class="error">{{ $errors->first('body') }}</span>
-                        @endif
-                    </p>
-                    <input type="submit" value="Add">
+                    <input type="submit" value="投稿する">
                     <p>
                     </p>
 

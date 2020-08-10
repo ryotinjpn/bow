@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -37,6 +40,7 @@ class PostsController extends Controller
         $post = new Post();
         $post->content = $request->content;
         $post->picture = $request->picture;
+        $post->user_id = Auth::user()->id;
         $post->save();
         return redirect('/');
     }
