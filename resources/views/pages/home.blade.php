@@ -1,4 +1,7 @@
 @extends('layouts.default')
 
 @section('title', 'BOW')
-<h1>hello</h1>
+
+@section('content')
+  <img src="images/top.jpg">
+@endsection
