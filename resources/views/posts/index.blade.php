@@ -4,6 +4,7 @@
 
 @section('content')
     @auth
+    <div>
         <div class="container">
             <div class="main_view">
                 <form method="post" action="{{ url('/posts') }}" enctype="multipart/form-data" class="post_form">
@@ -24,7 +25,7 @@
                     @forelse ($posts as $post)
                         <li>
                             <div>
-                                <img src="/storage/{{ $post->picture }}" width="100px" height="100px">
+                                <img src="/storage/{{ $post->picture }}" width="100%" height="100%">
                                 <div>{{ $post->content }}</div>
                             </div>
                         </li>
@@ -34,5 +35,6 @@
                 </ul>
             </div>
         </div>
+    </div>
     @endauth
 @endsection
