@@ -6,6 +6,7 @@ use App\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class PostsController extends Controller
 {
@@ -43,9 +44,15 @@ class PostsController extends Controller
         ]);
         $post = new Post();
         $post->content = $request->content;
-        $file_name = $request->file('picture')->getClientOriginalName();
-        $request->file('picture')->storeAs('public',$file_name);
-        $post->picture = $file_name;
+
+        $file = $request->file('picture');
+        $path = Storage::disk('s3')->put('/', $file, 'public');
+        $post->picture = Storage::disk('s3')->url($path);
+        //ローカル保存
+        /* $file = $request->file('picture')->getClientOriginalName(); */
+        /* $request->file('picture')->storeAs('public',$file); */
+        /* $post->picture = $file; */
+        
         $post->user_id = Auth::user()->id;
         $post->save();
         return redirect('/posts');
