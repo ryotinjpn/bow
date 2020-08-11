@@ -14,7 +14,7 @@
                         <span class="picture">
                             <label class="picture_label" for="post_picture"><i class="far fa-image picture_icon fa_icon"></i>
                                 <div id="picture_file">
-                                    <input accept="image/jpeg,image/gif,image/png,video/*" type="file" name="picture" id="post_picture">
+                                    <input type="file" id="post_picture" name="picture" class="form-control">
                                 </div>
                             </label>
                         </span>
