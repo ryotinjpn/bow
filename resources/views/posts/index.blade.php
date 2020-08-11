@@ -25,7 +25,7 @@
                     @forelse ($posts as $post)
                         <li>
                             <div>
-                                <img src="/storage/{{ $post->picture }}" width="100%" height="100%">
+                                <img src="{{ $post->picture }}"width="100%" height="100%">
                                 <div>{{ $post->content }}</div>
                             </div>
                         </li>
