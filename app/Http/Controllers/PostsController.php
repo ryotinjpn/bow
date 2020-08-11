@@ -17,7 +17,10 @@ class PostsController extends Controller
      */
     public function index(){
         $posts = Post::latest()->get();
+        $disk = Storage::disk('s3');
+        $files = $disk->files('/');
         return view('posts.index')->with('posts', $posts);
+        
     }
 
     /**
@@ -52,7 +55,7 @@ class PostsController extends Controller
         /* $file = $request->file('picture')->getClientOriginalName(); */
         /* $request->file('picture')->storeAs('public',$file); */
         /* $post->picture = $file; */
-        
+
         $post->user_id = Auth::user()->id;
         $post->save();
         return redirect('/posts');
