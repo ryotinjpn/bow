@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('/css/pages.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/posts.css') }}">
     {{--
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ asset('/css/reset.css') }}">
