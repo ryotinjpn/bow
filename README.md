@@ -1,61 +1,88 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# README
+# イヌ専用画像共有アプリ『BOW』
+![logo](https://user-images.githubusercontent.com/59902916/89963165-e17a4500-dc81-11ea-9f6c-384774965f93.png)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## http://www.bowjp.com/
+# 概要
+本アプリケーションはイヌ好きが集い自分のお気に入り画像を投稿し共有するサービスです。
 
-## About Laravel
+開発目的は殺処分問題改善に貢献する事です。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+捨てられたりペットショップで売れ残ったイヌは、次の里親や保護先が見つからない場合、保健所で殺処分されてしまいます。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+本アプリケーション上に良質なイヌ飼い主コミュニティを形成。動物愛護センターに保護されているイヌと譲受人のマッチングを図る事で、問題改善に貢献出来ればと思い開発しました。
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# 本番環境
+- デプロイ先 : Heroku
 
-## Learning Laravel
+# 開発経緯
+1. 譲受人を増やす事で殺処分数を減らす
+    - 本アプリケーション上で良質なイヌ飼い主コミュニティを形成する。
+      - コミュニテイの新規参入者を増やし、保護されているイヌと譲受人のマッチングを図る。
+      - 良質なコミュニティを形成する事で、悪戯や悪意あるユーザーが入ることを防ぐ。
+1. イヌ好きの人に楽しんでもらう
+    - ユーザーが飼っているイヌの画像を投稿し、いいねやコメントをもらう事で承認欲求を満たしてもらう。
+    - 共通の好きな事があるユーザー同士で繋がりを持ってもらう。
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# 機能一覧
+- 画像投稿機能
+- ユーザー登録、更新、削除
+- ログイン/ログアウト機能
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# 使用技術
+## フロントエンド
+- HTML/CSS
+- bootstrap4
+## バックエンド
+- PHP 7.4
+- Laravel 7.24
+## インフラ
+- Heroku
+- AWS
+  - S3 
+  - Route 53
+- MySQL 5.6
+- Apache 2.4
 
-## Laravel Sponsors
+# 課題や今後実装したい機能
+- 動画投稿機能
+- フォロー機能
+- いいね機能
+- お気に入り登録
+- コメント機能
+- 動物愛護センター位置、サイト情報検索機能
+- 投稿検索
+- ユーザー検索機能
+- ダイレクトメッセージ機能
+- ユーザー登録、更新、削除
+- プロフィール画像登録と更新
+- YouTubeチャンネルURL登録機能
+- グループ作成
+- 画像トリミング機能
+- 施設寄付の決済機能(PAY.JP API)
+- CircleCI, Docker環境の構築
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# DB設計
+## Userテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|null: false|
+|encrypted_password|string|null: false|
+|profile|text||
+|image|text||
+|youtube|text||
 
-### Premium Partners
+### Association
+- has_many :posts
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+## Postテーブル
+|Column|Type|Options|
+|------|----|-------|
+|content|text||
+|picture|text||
+|user_id|bigint|null: false|
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Association
+- belongs_to :user
