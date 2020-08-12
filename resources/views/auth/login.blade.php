@@ -41,7 +41,7 @@
                     <input value="guest@example.com" type="hidden" name="email" id="email">
                     <input value="guestguest" type="hidden" name="password" id="password">
                     <div class="button-panel">
-                        <button type="submit" class="button">
+                        <button type="submit" class="button_guest">
                             {{ __('ゲストユーザーログイン') }}
                         </button>
                     </div>

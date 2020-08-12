@@ -95,3 +95,19 @@ form {
 .form-footer a:hover {
   border-bottom: 1px dotted #8c8c8c;
 }
+
+.button_guest{
+  background: #fafafa;
+  border: none;
+  color: #8c8c8c;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.button_guest:focus {
+	outline:0;
+}

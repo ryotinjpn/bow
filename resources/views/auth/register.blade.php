@@ -43,7 +43,7 @@
                         name="password_confirmation" required autocomplete="new-password">
                 </div>
                 <div class="button-panel">
-                    <button type="submit" class="button">
+                    <button type="submit" class="button_guest">
                         {{ __('Register') }}
                     </button>
                 </div>
