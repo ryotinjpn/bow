@@ -3,7 +3,7 @@
 @section('content')
     <div class="center">
         <div class="form-wrapper">
-            <h1>{{ __('Register') }}</h1>
+            <h1>{{ __('新規登録') }}</h1>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="form-item">
@@ -44,12 +44,12 @@
                 </div>
                 <div class="button-panel">
                     <button type="submit" class="button">
-                        {{ __('Register') }}
+                        {{ __('登録') }}
                     </button>
                 </div>
             </form>
             <div class="form-footer">
-                <p><a href="{{ route('login') }}">Login</a></p>
+                <p><a href="{{ route('login') }}">ログイン</a></p>
             </div>
         </div>
     </div>
