@@ -30,7 +30,7 @@
                                     @if (File::extension($post->picture) == 'jpeg' || File::extension($post->picture) == 'png' || File::extension($post->picture) == 'gif')
                                         <img src="{{ $post->picture }}" width="100%" height="100%">
                                     @else
-                                        <video src="{{ $post->picture }}" width="100%" height="100%" controls="controls">
+                                        <video src="{{ $post->picture }}" width="100%" height="100%" controls="controls"></video>
                                     @endif
                                     <div>{{ $post->content }}</div>
                                     <div>{{ $post->created_at->diffForHumans() }}</div>
