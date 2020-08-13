@@ -25,8 +25,10 @@
                     @forelse ($posts as $post)
                         <li>
                             <div>
+                                <div>{{ $post->user->name }}</div>
                                 <img src="{{ $post->picture }}"width="100%" height="100%">
                                 <div>{{ $post->content }}</div>
+                                <div>{{ $post->created_at->diffForHumans() }}</div>
                             </div>
                         </li>
                     @empty
