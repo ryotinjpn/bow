@@ -10,11 +10,7 @@ use Storage;
 
 class PostsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function index(){
         $posts = Post::latest()->get();
         $disk = Storage::disk('s3');
@@ -32,13 +28,7 @@ class PostsController extends Controller
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
         $this->validate($request, [
