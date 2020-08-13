@@ -16,7 +16,6 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        
         $posts = Post::latest()->get();
         $disk = Storage::disk('s3');
         $files = $disk->files('/');
