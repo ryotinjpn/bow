@@ -6,34 +6,26 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
             'content'=>'required',
-            'picture'=>'required|image|mimes:jpeg,png,jpg,gif,mp4,mov'
+            'picture'=>'required|mimes:jpeg,png,jpg,gif,mp4,mov|max:5020',
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'content.required'  => 'キャプションを入力してください。',
-            'picture.required'=> 'イメージを選択して下さい。。',
-
+            'content.required' => 'キャプションを入力してください。',
+            'picture.required' => 'イメージを選択して下さい。',
+            "picture.mines" => "指定された拡張子（PNG/JPG/GIF/MP4/MOV）ではありません。",
+            "picture.max" => "5Ｍを超えています。",
         ];
     }
 }
