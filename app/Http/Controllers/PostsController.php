@@ -43,7 +43,7 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'content'=>'required',
-            'picture'=>'required'
+            'picture'=>'required|image|mimes:jpeg,png,jpg,gif,mp4,mov'
         ]);
         $post = new Post();
         $post->content = $request->content;

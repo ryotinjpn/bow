@@ -27,7 +27,10 @@
                             <li>
                                 <div>
                                     <div>{{ $post->user->name }}</div>
-                                    @if (File::extension($post->picture) == 'jpeg' || File::extension($post->picture) == 'png' || File::extension($post->picture) == 'gif')
+                                    @if (File::extension($post->picture) == 'jpeg' || 
+                                         File::extension($post->picture) == 'jpg'|| 
+                                         File::extension($post->picture) == 'png' || 
+                                         File::extension($post->picture) == 'gif')
                                         <img src="{{ $post->picture }}" width="100%" height="100%">
                                     @else
                                         <video src="{{ $post->picture }}" width="100%" height="100%" controls="controls"></video>
