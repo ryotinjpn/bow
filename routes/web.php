@@ -18,5 +18,6 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/posts', 'PostsController@index');
 Route::get('/posts/{post}', 'PostsController@show')->where('post', '[0-9]+');
 Route::post('/posts', 'PostsController@store');
-
+Route::get('/users/edit', 'UsersController@edit')->middleware('auth');
 Route::get('/users/{id}', 'UsersController@show');
+
