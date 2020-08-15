@@ -37,7 +37,7 @@
                         @forelse ($posts as $post)
                             <li>
                                 <div>
-                                    <div>{{ $post->user->name }}</div>
+                                    <a href="{{ action('UsersController@show', $post->user_id) }}">{{ $post->user->name }}</a>
                                     @if (File::extension($post->picture) == 'jpeg' || File::extension($post->picture) == 'jpg' || File::extension($post->picture) == 'png' || File::extension($post->picture) == 'gif')
                                         <img src="{{ $post->picture }}" width="100%" height="100%">
                                     @else
