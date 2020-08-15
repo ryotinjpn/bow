@@ -32,9 +32,9 @@
         <div class="icons">
             <nav class="icons_bar">
                 @auth
-                    <a href="{{ url('/posts') }}"><img class="logo_image" src="images/logo.png"></a>
+                    <a href="{{ url('/posts') }}"><img class="logo_image" src="/images/logo.png"></a>
                 @else
-                    <a href="{{ url('/') }}"><img class="logo_image" src="images/logo.png"></a>
+                    <a href="{{ url('/') }}"><img class="logo_image" src="/images/logo.png"></a>
                 @endauth
                 <ul class="nav navbar-nav navbar-right icons_bar_rigth">
                     @auth
