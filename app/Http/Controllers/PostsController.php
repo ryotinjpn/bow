@@ -36,7 +36,7 @@ class PostsController extends Controller
 
         $post->user_id = Auth::user()->id;
         $post->save();
-        return redirect('/posts');
+        return redirect('/');
     }
 
     public function show($id)

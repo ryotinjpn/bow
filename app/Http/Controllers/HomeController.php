@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use Storage;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $posts = Post::latest()->get();
+        $disk = Storage::disk('s3');
+        $files = $disk->files('/');
+        return view('home')->with('posts', $posts);
     }
 }
