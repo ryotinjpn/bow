@@ -10,10 +10,7 @@ use Storage;
 class PostsController extends Controller
 {
     public function index(){
-        $posts = Post::latest()->get();
-        $disk = Storage::disk('s3');
-        $files = $disk->files('/');
-        return view('posts.index')->with('posts', $posts);
+
     }
 
     public function create()
@@ -36,7 +33,7 @@ class PostsController extends Controller
 
         $post->user_id = Auth::user()->id;
         $post->save();
-        return redirect('/posts');
+        return redirect('/');
     }
 
     public function show($id)

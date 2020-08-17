@@ -32,11 +32,7 @@
     <header class="navbar navbar-fixed-top" style="background-color: #f0f0f0;">
         <div class="icons">
             <nav class="icons_bar">
-                @auth
-                    <a href="{{ url('/posts') }}"><img class="logo_image" src="/images/logo.png"></a>
-                @else
-                    <a href="{{ url('/') }}"><img class="logo_image" src="/images/logo.png"></a>
-                @endauth
+                <a href="{{ url('/') }}"><img class="logo_image" src="/images/logo.png"></a>
                 <ul class="nav navbar-nav navbar-right icons_bar_rigth">
                     @auth
                         <li><a href="{{ action('UsersController@show', Auth::user()->id) }}"><i class="fas fa-user fa_icon"></i></a></li>
