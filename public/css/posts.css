@@ -15,7 +15,7 @@
 
 img {
   display: block;
-  padding: 5px 0;
+  margin: 5px 0;
 }
 
 .content_timeline {
@@ -28,9 +28,7 @@ img {
 
 .user_timeline {
   display: flex;
-  padding: 0 10px 10px 10px;
   align-items: center;
-  justify-content: space-between;
 }
 
 .user_name {
