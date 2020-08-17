@@ -5,7 +5,16 @@
 @section('content')
     <div class="container">
         <div class="main_view">
-            <div>{{ $user->name }}</div>
+            <div class="user_top">
+                @if (empty($user->image))
+                    <img src="/images/usericon.png" class="icon_image_prof">
+                @else
+                    <img src="{{ $user->image }}" class="icon_image_prof">
+                @endif
+                <span class="user_name">{{ $user->name }}<span>
+            </div>
+            <div>{{ $user->profile }}</div>
+            <a href="{{ $user->youtube }}">YouTubeチャンネル</a>
             @forelse ($posts as $post)
                 <li>
                     <div>
