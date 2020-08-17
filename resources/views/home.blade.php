@@ -5,7 +5,7 @@
 @section('content')
     @guest
         <div class="center">
-            <div class="top_image">
+            <div class="top_image">
                 <img class="top_dog" src="images/dogtop.jpg">
                 <div class="top_image2">
                     <img class="top_logo" src="images/logo.png">
