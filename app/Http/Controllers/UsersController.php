@@ -26,6 +26,9 @@ class UsersController extends Controller
         $user = Auth::user();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->profile = $request->profile;
+        $user->image = $request->image;
+        $user->youtube = $request->youtube;
         $user->save();
 
         return redirect(url('/users/edit'))->with('success', '保存しました。');
