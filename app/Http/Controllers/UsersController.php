@@ -6,6 +6,7 @@ use App\User;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class UsersController extends Controller
 {
@@ -23,11 +24,16 @@ class UsersController extends Controller
 
     public function update(Request $request)
     {
+        
         $user = Auth::user();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->profile = $request->profile;
-        $user->image = $request->image;
+
+        $file = $request->file('image');
+        $path = Storage::disk('s3')->put('/', $file, 'public');
+        $user->image = Storage::disk('s3')->url($path);
+
         $user->youtube = $request->youtube;
         $user->save();
 
