@@ -23,7 +23,6 @@
                         {{ csrf_field() }}
                         <div class="form-item">
                             <textarea id="form_caption" name="content" placeholder="キャプションを書く">{{ old('content') }}</textarea>
-
                             <span class="picture">
                                 <label class="picture_label" for="post_picture"><i
                                         class="far fa-image picture_icon fa_icon"></i>
