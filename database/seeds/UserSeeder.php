@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
             'email' => 'guest@example.com',
             'password' => Hash::make('guestguest'),
             'profile' => 'ゲストアカウントです！',
+            'image' => '',
             'youtube' => 'https://www.youtube.com/',
         ]);
     }

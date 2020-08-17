@@ -5,7 +5,12 @@
 @section('content')
     <div class="container">
         <div class="main_view">
-            <div>{{ $user->name }}</div>
+            <div class="user_top">
+                <img src="/images/usericon.png">
+                <span>{{ $user->name }}<span>
+            </div>
+            <div>{{ $user->profile }}</div>
+            <a href="{{ $user->youtube }}">YouTubeチャンネル</a>
             @forelse ($posts as $post)
                 <li>
                     <div>
