@@ -10,10 +10,7 @@ use Storage;
 class PostsController extends Controller
 {
     public function index(){
-        $posts = Post::latest()->get();
-        $disk = Storage::disk('s3');
-        $files = $disk->files('/');
-        return view('posts.index')->with('posts', $posts);
+
     }
 
     public function create()
