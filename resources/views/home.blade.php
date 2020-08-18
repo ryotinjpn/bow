@@ -70,6 +70,7 @@
                             <li>投稿はまだありません</li>
                         @endforelse
                     </ul>
+                    
                 </div>
             </div>
         </div>

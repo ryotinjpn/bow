@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
 use Storage;
 
@@ -25,9 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         $posts = Post::latest()->get();
         $disk = Storage::disk('s3');
         $files = $disk->files('/');
-        return view('home')->with('posts', $posts);
+        /* return view('home')->with('posts', $posts); */
+        return view('home', ['user' => $user, 'posts' => $posts]);
     }
 }
