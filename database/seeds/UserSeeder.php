@@ -17,6 +17,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('guestguest'),
             'profile' => 'ゲストアカウントです！',
             'youtube' => 'https://www.youtube.com/',
-        ]);
+        ]); 
+
+        factory(App\User::class, 30)->create();
     }
 }
