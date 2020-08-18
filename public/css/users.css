@@ -16,3 +16,13 @@
   border-radius: 100px;
   object-fit: cover;
 }
+
+.all_user{
+  display: flex;
+  justify-content: center;
+}
+
+.users{
+  display: flex;
+  align-items: center;
+}

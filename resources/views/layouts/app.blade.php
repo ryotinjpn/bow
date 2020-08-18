@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -36,8 +37,8 @@
                 <ul class="nav navbar-nav navbar-right icons_bar_rigth">
                     @auth
                         <li><a href="{{ action('UsersController@show', Auth::user()->id) }}"><i class="fas fa-user fa_icon"></i></a></li>
-                        {{-- <li><a href="#"><i class="fas fa-dog fa_icon"></i></a></li>
-                        <li><a href="#"><i class="fas fa-hands-helping fa_icon"></i></a></li> --}}
+                        {{-- <li><a href="#"><i class="fas fa-dog fa_icon"></i></a></li>--}}
+                        <li><a href="{{ action('UsersController@index') }}"><i class="fas fa-hands-helping fa_icon"></i></a></li>
                         @unless ( Auth::user()->email == "guest@example.com" )
                         <li><a href="{{ url('/users/edit') }}"><i class="fas fa-cog fa_icon"></i></a></li>
                         @endunless
