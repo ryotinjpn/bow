@@ -170,6 +170,11 @@ li {
   min-height: 100vh
 }
 
+.home_view {
+  display: flex;
+  
+}
+
 .notifications{
   display: flex;
   justify-content: center;

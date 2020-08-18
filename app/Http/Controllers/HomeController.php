@@ -30,7 +30,6 @@ class HomeController extends Controller
         $posts = Post::latest()->get();
         $disk = Storage::disk('s3');
         $files = $disk->files('/');
-        /* return view('home')->with('posts', $posts); */
-        return view('home', ['user' => $user, 'posts' => $posts]);
+        return view('home', ['user' => $user,  'posts' => $posts]);
     }
 }
