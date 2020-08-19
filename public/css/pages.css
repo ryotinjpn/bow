@@ -179,3 +179,27 @@ li {
   display: flex;
   justify-content: center;
 }
+
+.user_home{
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  width: 30%;
+}
+
+.user_home_info {
+  display: flex;
+  align-items: center;
+}
+
+.user_home_index{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user_home_all{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

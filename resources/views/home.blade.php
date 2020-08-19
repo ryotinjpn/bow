@@ -89,12 +89,15 @@
                                 <a href="{{ action('UsersController@show', $post->user_id) }}"
                                     class="user_name">{{ $post->user->name }}</a>
                             </div>
-                            <h1>ユーザー一覧</h1>
-                            <div class="all_user">
+                            <div class="user_home_index">
+                                <h5>おすすめ</h5>
+                                <a href="{{ action('UsersController@index') }}">すべてを見る</a>
+                            </div>
+                            <div class="user_home_user">
                                 <ul>
                                     @foreach ($users as $user)
                                         <li>
-                                            <div class="users">
+                                            <div class="user_home_info">
                                                 @if (empty($user->image))
                                                     <a href="{{ action('UsersController@show', $user->id) }}"><img
                                                             src="/images/usericon.png" class="icon_image_feed"></a>

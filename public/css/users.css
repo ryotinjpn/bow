@@ -26,15 +26,3 @@
   display: flex;
   align-items: center;
 }
-
-.user_home{
-  display: flex;
-  align-items: flex-start;
-  width: 20%;
-}
-
-.user_home_info {
-  padding-left: 10px;
-  display: flex;
-  align-items: center;
-}
