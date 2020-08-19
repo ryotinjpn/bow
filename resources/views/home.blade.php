@@ -98,15 +98,17 @@
                                     @foreach ($users as $user)
                                         <li>
                                             <div class="user_home_info">
-                                                @if (empty($user->image))
-                                                    <a href="{{ action('UsersController@show', $user->id) }}"><img
-                                                            src="/images/usericon.png" class="icon_image_feed"></a>
-                                                @else
-                                                    <a href="{{ action('UsersController@show', $user->id) }}"><img
-                                                            src="{{ $user->image }}" class="icon_image_feed"></a>
-                                                @endif
-                                                <a href="{{ action('UsersController@show', $user->id) }}"
-                                                    class="user_name">{{ $user->name }}</a>
+                                                @unless($user == Auth::user())
+                                                    @if (empty($user->image))
+                                                        <a href="{{ action('UsersController@show', $user->id) }}"><img
+                                                                src="/images/usericon.png" class="icon_image_feed"></a>
+                                                    @else
+                                                        <a href="{{ action('UsersController@show', $user->id) }}"><img
+                                                                src="{{ $user->image }}" class="icon_image_feed"></a>
+                                                    @endif
+                                                    <a href="{{ action('UsersController@show', $user->id) }}"
+                                                        class="user_name">{{ $user->name }}</a>
+                                                @endunless
                                             </div>
                                         </li>
                                     @endforeach
