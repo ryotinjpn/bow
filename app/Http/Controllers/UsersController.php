@@ -11,7 +11,7 @@ use Storage;
 class UsersController extends Controller
 {
     public function index(){
-        $users = User::All();
+        $users = User::All()->shuffle();
         return view('users.index', ['users' => $users]);
     }
 
