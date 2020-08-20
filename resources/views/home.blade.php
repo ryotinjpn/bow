@@ -64,13 +64,14 @@
                                                 class="user_name">{{ $post->user->name }}</a>
                                         </div>
                                         @if (File::extension($post->picture) == 'jpeg' || File::extension($post->picture) == 'jpg' || File::extension($post->picture) == 'png' || File::extension($post->picture) == 'gif')
-                                            <img src="{{ $post->picture }}" width="100%" height="100%">
+                                            <a href="{{ action('PostsController@show', $post->id) }}"><img
+                                                    src="{{ $post->picture }}" width="100%" height="100%"></a>
                                         @else
                                             <video src="{{ $post->picture }}" width="100%" height="100%"
                                                 controls="controls"></video>
                                         @endif
                                         <div>{{ $post->content }}</div>
-                                        <a class="" href="{{ action('PostsController@show', $post->id) }}">コメントを見る</a>
+                                        {{-- <a class="" href="{{ action('PostsController@show', $post->id) }}">コメントを見る</a> --}}
                                         <div>{{ $post->created_at->diffForHumans() }}</div>
                                     </li>
                                 @empty
