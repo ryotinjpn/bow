@@ -16,8 +16,9 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/posts', 'PostsController@index');
-Route::get('/post/{id}','PostController@show');
+Route::get('/posts/{id}','PostsController@show');
 Route::post('/posts', 'PostsController@store');
+
 Route::get('/users/index', 'UsersController@index');
 Route::get('/users/edit', 'UsersController@edit')->middleware('auth');
 Route::post('/users/edit', 'UsersController@update')->middleware('auth');
