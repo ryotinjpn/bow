@@ -24,3 +24,4 @@ Route::get('/users/edit', 'UsersController@edit')->middleware('auth');
 Route::post('/users/edit', 'UsersController@update')->middleware('auth');
 Route::get('/users/{id}', 'UsersController@show');
 
+Route::post('/posts/{post}/comments', 'CommentsController@store');
