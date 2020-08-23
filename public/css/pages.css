@@ -172,7 +172,11 @@ li {
 
 .home_view {
   display: flex;
-  
+}
+
+.post_view {
+  display: flex;
+  flex-direction: column;
 }
 
 .notifications{
