@@ -29,12 +29,13 @@
                 <div>
                     <form method="post" action="{{ action('CommentsController@store', $post) }}">
                         {{ csrf_field() }}
-                        <p>
-                            <input type="text" name="text" placeholder="enter comment" value="{{ old('text') }}">
-                        </p>
-                        <p>
-                            <input type="submit" value="Add Comment">
-                        </p>
+                        <div class="comment_form">
+                            <div class="form-item">
+                                <textarea placeholder="コメントを書く" name="text" id="comment_text"
+                                    value="{{ old('text') }}"></textarea>
+                            </div>
+                            <input type="submit" name="commit" value="投稿" class="btn_comment" data-disable-with="投稿">
+                        </div>
                     </form>
                 </div>
                 <div>

@@ -4,7 +4,7 @@
     <div class="center">
         <div class="form-wrapper">
             <h1>{{ __('ログイン') }}</h1>
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}" class="form-auth">
                 @csrf
                 <div class="form-item">
                     <input id="email" type="email" placeholder="Email Address" class="form-control 
