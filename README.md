@@ -74,6 +74,7 @@
 
 ### Association
 - has_many :posts
+- has_many :comments
 
 
 ## Postテーブル
@@ -84,4 +85,17 @@
 |user_id|bigint|null: false|
 
 ### Association
+- has_many :comments
 - belongs_to :user
+
+
+## Commentテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|text||
+|user_id|integer|null: false|
+|post_id|integer|null: false|
+
+### Association
+- belongs_to :user
+- belongs_to :post
