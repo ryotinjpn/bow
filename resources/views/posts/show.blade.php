@@ -39,23 +39,21 @@
                     </form>
                 </div>
                 <div>
-                    <ul>
-                        @forelse ($post->comments as $comment)
-                            <li>
-                                @if (empty($comment->user->image))
-                                    <a href="{{ action('UsersController@show', $comment->user_id) }}"><img
-                                            src="/images/usericon.png" class="icon_image_feed"></a>
-                                @else
-                                    <a href="{{ action('UsersController@show', $comment->user_id) }}"><img
-                                            src="{{ $comment->user->image }}" class="icon_image_feed"></a>
-                                @endif
-                                <a href="{{ action('UsersController@show', $comment->user_id) }}"
-                                    class="user_name">{{ $comment->user->name }}</a>
-                                {{ $comment->text }}
-                            </li>
-                        @empty
-                        @endforelse
-                    </ul>
+                    @forelse ($post->comments as $comment)
+                        <div class="user_timeline">
+                            @if (empty($comment->user->image))
+                                <a href="{{ action('UsersController@show', $comment->user_id) }}"><img
+                                        src="/images/usericon.png" class="icon_image_feed"></a>
+                            @else
+                                <a href="{{ action('UsersController@show', $comment->user_id) }}"><img
+                                        src="{{ $comment->user->image }}" class="icon_image_feed"></a>
+                            @endif
+                            <a href="{{ action('UsersController@show', $comment->user_id) }}"
+                                class="user_name">{{ $comment->user->name }}</a>
+                            {{ $comment->text }}
+                        </div>
+                    @empty
+                    @endforelse
                 </div>
             </div>
         </div>
