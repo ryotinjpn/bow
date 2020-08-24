@@ -4,7 +4,7 @@
     <div class="center">
         <div class="form-wrapper">
             <h1>{{ __('新規登録') }}</h1>
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" class="form-auth">
                 @csrf
                 <div class="form-item">
                     <input id="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror"

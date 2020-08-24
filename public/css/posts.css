@@ -75,13 +75,13 @@ span.picture {
 .comment_form {
   display: flex;
   width: 70%;
-  margin: 50px 0 0 10px;
+  margin: 50px 0 0 0;
 }
 
 .btn_comment {
-  color: #764B0A;
+  color: black;
   background-color: white;
-  border: 3px solid #764B0A;
+  border: 3px solid black;
   margin: 0px 0 15px 10px;
   width: 90px;
 }

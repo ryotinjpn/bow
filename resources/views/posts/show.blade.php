@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="main_view">
-            <div class="home_view">
+            <div class="post_view">
                 <div>
                     <div class="user_timeline">
                         @if (empty($post->user->image))
@@ -26,8 +26,36 @@
                     <div>{{ $post->content }}</div>
                     <div>{{ $post->created_at->diffForHumans() }}</div>
                 </div>
+                <div>
+                    <form method="post" action="{{ action('CommentsController@store', $post) }}">
+                        {{ csrf_field() }}
+                        <div class="comment_form">
+                            <div class="form-item">
+                                <textarea placeholder="コメントを書く" name="text" id="comment_text"
+                                    value="{{ old('text') }}"></textarea>
+                            </div>
+                            <input type="submit" name="commit" value="投稿" class="btn_comment" data-disable-with="投稿">
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    @forelse ($post->comments as $comment)
+                        <div class="user_timeline">
+                            @if (empty($comment->user->image))
+                                <a href="{{ action('UsersController@show', $comment->user_id) }}"><img
+                                        src="/images/usericon.png" class="icon_image_feed"></a>
+                            @else
+                                <a href="{{ action('UsersController@show', $comment->user_id) }}"><img
+                                        src="{{ $comment->user->image }}" class="icon_image_feed"></a>
+                            @endif
+                            <a href="{{ action('UsersController@show', $comment->user_id) }}"
+                                class="user_name">{{ $comment->user->name }}</a>
+                            {{ $comment->text }}
+                        </div>
+                    @empty
+                    @endforelse
+                </div>
             </div>
         </div>
-    </div>
-    <script src="/js/main.js"></script>
-@endsection
+        <script src="/js/main.js"></script>
+    @endsection

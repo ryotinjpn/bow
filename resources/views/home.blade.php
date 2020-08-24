@@ -71,7 +71,7 @@
                                                 controls="controls"></video>
                                         @endif
                                         <div>{{ $post->content }}</div>
-                                        {{-- <a class="" href="{{ action('PostsController@show', $post->id) }}">コメントを見る</a> --}}
+                                        <a class="" href="{{ action('PostsController@show', $post->id) }}">コメントを見る</a>
                                         <div>{{ $post->created_at->diffForHumans() }}</div>
                                     </li>
                                 @empty
