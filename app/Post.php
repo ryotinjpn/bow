@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
-use App\Like_relationship;
+use App\Like;
 
 class Post extends Model
 {
@@ -21,13 +21,13 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function Like_relationships()
+    public function Likes()
     {
-      return $this->hasMany('App\Like_relationship');
+      return $this->hasMany('App\Like');
     }
 
     public function like_by()
     {
-      return Like_relationship::where('user_id', Auth::user()->id)->first();
+      return Like::where('user_id', Auth::user()->id)->first();
     }
 }
