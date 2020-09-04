@@ -26,5 +26,5 @@ Route::get('/users/{id}', 'UsersController@show');
 
 Route::post('/posts/{post}/comments', 'CommentsController@store');
 
-Route::post('/posts/{post}/likes', 'LikesController@store');
-Route::post('/posts/{post}/likes/{like}', 'LikesController@destroy');
+Route::get('/posts/like/{id}', 'LikesController@like')->name('posts.like');
+Route::get('/posts/unlike/{id}', 'LikesController@unlike')->name('posts.unlike');
