@@ -71,6 +71,18 @@
                                                 controls="controls"></video>
                                         @endif
                                         <div>{{ $post->content }}</div>
+                                        <div>
+                                            @if ($post->is_liked_by_auth_user())
+                                                <a href="{{ route('posts.unlike', ['id' => $post->id]) }}"
+                                                    class="btn btn-success btn-sm">いいね<span
+                                                        class="badge">{{ $post->likes->count() }}</span></a>
+                                            @else
+                                                <a href="{{ route('posts.like', ['id' => $post->id]) }}"
+                                                    class="btn btn-secondary btn-sm">いいね<span
+                                                        class="badge">{{ $post->likes->count() }}</span></a>
+                                            @endif
+                                        </div>
+                                        {{ $post->likes->count() }}
                                         <a class="" href="{{ action('PostsController@show', $post->id) }}">コメントを見る</a>
                                         <div>{{ $post->created_at->diffForHumans() }}</div>
                                     </li>
@@ -81,15 +93,15 @@
                         </div>
                         <div class="user_home">
                             <div class="user_home_info">
-                                @if (empty($post->user->image))
-                                    <a href="{{ action('UsersController@show', $post->user_id) }}"><img
-                                            src="/images/usericon.png" class="icon_image_feed"></a>
+                                @if (empty($user->image))
+                                    <a href="{{ action('UsersController@show', $user->id) }}"><img src="/images/usericon.png"
+                                            class="icon_image_feed"></a>
                                 @else
-                                    <a href="{{ action('UsersController@show', $post->user_id) }}"><img
-                                            src="{{ $post->user->image }}" class="icon_image_feed"></a>
+                                    <a href="{{ action('UsersController@show', $user->id) }}"><img src="{{ $user->image }}"
+                                            class="icon_image_feed"></a>
                                 @endif
-                                <a href="{{ action('UsersController@show', $post->user_id) }}"
-                                    class="user_name">{{ $post->user->name }}</a>
+                                <a href="{{ action('UsersController@show', $user->id) }}"
+                                    class="user_name">{{ $user->name }}</a>
                             </div>
                             <div class="user_home_index">
                                 <h5>おすすめ</h5>
