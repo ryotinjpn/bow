@@ -5,30 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Like;
 use Auth;
-use App\Post;
 
 class LikesController extends Controller
 {
-    public function store(Request $request, $postId)
+    public function __construct()
     {
-        Like::create(
-          array(
-            'user_id' => Auth::user()->id,
-            'post_id' => $postId
-          )
-        );
-
-        $post = Post::findOrFail($postId);
-
-        return redirect()
-             ->action('PostsController@show', $post->id);
+        $this->middleware(['auth', 'verified'])->only(['like', 'unlike']);
     }
 
-    public function destroy($postId, $likeId) {
-      $post = Post::findOrFail($postId);
-      $post->like_by()->findOrFail($likeId)->delete();
+    public function like($id)
+    {
+        Like::create([
+            'post_id' => $id,
+            'user_id' => Auth::id(),
+        ]);
 
-      return redirect()
-             ->action('PostsController@show', $post->id);
+        session()->flash('success', 'You Liked the Post.');
+
+        return redirect()->back();
     }
+
+    public function unlike($id)
+    {
+        $like = Like::where('post_id', $id)->where('user_id', Auth::id())->first();
+        $like->delete();
+
+        session()->flash('success', 'You Unliked the Post.');
+
+        return redirect()->back();
+    }
+
 }
