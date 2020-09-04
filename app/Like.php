@@ -3,28 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use kanazaca\CounterCache\CounterCache;
 
 class Like extends Model
 {
-    use CounterCache;
-
-    public $counterCacheOptions = [
-        'Post' => [
-            'field' => 'likes_count',
-            'foreignKey' => 'post_id'
-        ]
-    ];
-
     protected $fillable = ['user_id', 'post_id'];
 
-    public function Post()
+    public function post()
     {
       return $this->belongsTo('App\Post');
     }
 
-    public function User()
+    public function user()
     {
       return $this->belongsTo(User::class);
     }
+    
 }
