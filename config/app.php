@@ -175,8 +175,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        kanazaca\CounterCache\CounterCacheServiceProvider::class,
-
     ],
 
     /*
