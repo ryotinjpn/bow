@@ -15,8 +15,6 @@ class HomeController extends Controller
         $user = Auth::user();
         $users = User::All()->random(5);
         $posts = Post::latest()->get();
-        $disk = Storage::disk('s3');
-        $files = $disk->files('/');
         
         return view('home', ['user' => $user, 'users' => $users, 'posts' => $posts]);
     }
