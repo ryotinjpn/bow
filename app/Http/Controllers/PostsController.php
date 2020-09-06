@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
@@ -9,15 +10,16 @@ use Storage;
 
 class PostsController extends Controller
 {
-    public function index(){
-
+    public function index()
+    {
+        //
     }
 
     public function create()
     {
         //
     }
- 
+
     public function store(PostRequest $request)
     {
         $post = new Post();
@@ -39,8 +41,8 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('posts.show',[
-            'post'=>$post
+        return view('posts.show', [
+            'post' => $post
         ]);
     }
 

@@ -25,3 +25,6 @@ Route::post('/users/edit', 'UsersController@update')->middleware('auth');
 Route::get('/users/{id}', 'UsersController@show');
 
 Route::post('/posts/{post}/comments', 'CommentsController@store');
+
+Route::get('/posts/like/{id}', 'LikesController@like')->name('posts.like');
+Route::get('/posts/unlike/{id}', 'LikesController@unlike')->name('posts.unlike');
