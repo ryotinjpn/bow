@@ -33,6 +33,15 @@
                     @else
                         <video src="{{ $post->picture }}" width="100%" height="100%" controls="controls"></video>
                     @endif
+                    <div>
+                        @if ($post->is_liked_by_auth_user())
+                            <a href="{{ route('posts.unlike', ['id' => $post->id]) }}"
+                                class="glyphicon glyphicon-heart">{{ $post->likes->count() }}</a>
+                        @else
+                            <a href="{{ route('posts.like', ['id' => $post->id]) }}"
+                                class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
+                        @endif
+                    </div>
                     <div>{{ $post->content }}</div>
                     <div>{{ $post->created_at->diffForHumans() }}</div>
                 </li>
