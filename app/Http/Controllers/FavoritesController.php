@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Favorite;
+use Auth;
 
 class FavoritesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified'])->only(['like', 'unlike']);
+        $this->middleware(['auth', 'verified'])->only(['favorite', 'unfavorite']);
     }
 
     public function favorite($id)
