@@ -45,4 +45,20 @@ class Post extends Model
       return false;
     }
   }
+
+  public function is_favorited_by_auth_user()
+  {
+    $id = Auth::id();
+
+    $favoriters = array();
+    foreach ($this->favorites as $favorite) {
+      array_push($favoriters, $favorite->user_id);
+    }
+
+    if (in_array($id, $favoriters)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
