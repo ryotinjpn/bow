@@ -28,3 +28,6 @@ Route::post('/posts/{post}/comments', 'CommentsController@store');
 
 Route::get('/posts/like/{id}', 'LikesController@like')->name('posts.like');
 Route::get('/posts/unlike/{id}', 'LikesController@unlike')->name('posts.unlike');
+
+Route::get('/posts/favorite/{id}', 'favoritesController@favorite')->name('posts.favorite');
+Route::get('/posts/unfavorite/{id}', 'favoritesController@unfavorite')->name('posts.unfavorite');
