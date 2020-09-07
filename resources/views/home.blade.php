@@ -80,6 +80,15 @@
                                                     class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
                                             @endif
                                         </div>
+                                        <div>
+                                            @if ($post->is_favorited_by_auth_user())
+                                                <a href="{{ route('posts.unfavorite', ['id' => $post->id]) }}"
+                                                    class="fas fa-bookmark"></a>
+                                            @else
+                                                <a href="{{ route('posts.favorite', ['id' => $post->id]) }}"
+                                                    class="far fa-bookmark fav"></a>
+                                            @endif
+                                        </div>
                                         <a class="" href="{{ action('PostsController@show', $post->id) }}">コメントを見る</a>
                                         <div>{{ $post->created_at->diffForHumans() }}</div>
                                     </li>
