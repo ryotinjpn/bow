@@ -8,7 +8,11 @@ use App\Like;
 
 class Post extends Model
 {
-  protected $fillable = ['content', 'picture', 'user_id'];
+  protected $fillable = [
+    'content',
+    'picture',
+    'user_id'
+  ];
 
   public function comments()
   {
@@ -22,12 +26,12 @@ class Post extends Model
 
   public function likes()
   {
-    return $this->hasMany(Like::class, 'post_id');
+    return $this->hasMany('App\Like', 'post_id');
   }
 
   public function favorites()
   {
-    return $this->hasMany(Favorite::class, 'post_id');
+    return $this->hasMany('App\Favorite', 'post_id');
   }
 
   public function is_liked_by_auth_user()
