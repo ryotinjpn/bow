@@ -53,15 +53,26 @@
                                 @forelse ($posts as $post)
                                     <li>
                                         <div class="user_timeline">
-                                            @if (empty($post->user->image))
-                                                <a href="{{ action('UsersController@show', $post->user_id) }}"><img
-                                                        src="/images/usericon.png" class="icon_image_feed"></a>
-                                            @else
-                                                <a href="{{ action('UsersController@show', $post->user_id) }}"><img
-                                                        src="{{ $post->user->image }}" class="icon_image_feed"></a>
-                                            @endif
-                                            <a href="{{ action('UsersController@show', $post->user_id) }}"
-                                                class="user_name">{{ $post->user->name }}</a>
+                                            <div>
+                                                @if (empty($post->user->image))
+                                                    <a href="{{ action('UsersController@show', $post->user_id) }}"><img
+                                                            src="/images/usericon.png" class="icon_image_feed"></a>
+                                                @else
+                                                    <a href="{{ action('UsersController@show', $post->user_id) }}"><img
+                                                            src="{{ $post->user->image }}" class="icon_image_feed"></a>
+                                                @endif
+                                                <a href="{{ action('UsersController@show', $post->user_id) }}"
+                                                    class="user_name">{{ $post->user->name }}</a>
+                                            </div>
+                                            <div>
+                                                @if ($post->is_favorited_by_auth_user())
+                                                    <a href="{{ route('posts.unfavorite', ['id' => $post->id]) }}"
+                                                        class="fas fa-bookmark"></a>
+                                                @else
+                                                    <a href="{{ route('posts.favorite', ['id' => $post->id]) }}"
+                                                        class="far fa-bookmark fav"></a>
+                                                @endif
+                                            </div>
                                         </div>
                                         @if (File::extension($post->picture) == 'jpeg' || File::extension($post->picture) == 'jpg' || File::extension($post->picture) == 'png' || File::extension($post->picture) == 'gif')
                                             <a href="{{ action('PostsController@show', $post->id) }}"><img
@@ -78,15 +89,6 @@
                                             @else
                                                 <a href="{{ route('posts.like', ['id' => $post->id]) }}"
                                                     class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
-                                            @endif
-                                        </div>
-                                        <div>
-                                            @if ($post->is_favorited_by_auth_user())
-                                                <a href="{{ route('posts.unfavorite', ['id' => $post->id]) }}"
-                                                    class="fas fa-bookmark"></a>
-                                            @else
-                                                <a href="{{ route('posts.favorite', ['id' => $post->id]) }}"
-                                                    class="far fa-bookmark fav"></a>
                                             @endif
                                         </div>
                                         <a class="" href="{{ action('PostsController@show', $post->id) }}">コメントを見る</a>
