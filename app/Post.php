@@ -8,22 +8,30 @@ use App\Like;
 
 class Post extends Model
 {
-    //
-    protected $fillable = ['content','picture','user_id'];
-    
-    public function comments()
-    {
-        return $this->hasMany('App\Comment');
-    }
+  protected $fillable = [
+    'content',
+    'picture',
+    'user_id'
+  ];
 
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
-
-    public function likes()
+  public function comments()
   {
-    return $this->hasMany(Like::class, 'post_id');
+    return $this->hasMany('App\Comment');
+  }
+
+  public function user()
+  {
+    return $this->belongsTo('App\User');
+  }
+
+  public function likes()
+  {
+    return $this->hasMany('App\Like', 'post_id');
+  }
+
+  public function favorites()
+  {
+    return $this->hasMany('App\Favorite', 'post_id');
   }
 
   public function is_liked_by_auth_user()
@@ -31,11 +39,27 @@ class Post extends Model
     $id = Auth::id();
 
     $likers = array();
-    foreach($this->likes as $like) {
+    foreach ($this->likes as $like) {
       array_push($likers, $like->user_id);
     }
 
     if (in_array($id, $likers)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function is_favorited_by_auth_user()
+  {
+    $id = Auth::id();
+
+    $favoriters = array();
+    foreach ($this->favorites as $favorite) {
+      array_push($favoriters, $favorite->user_id);
+    }
+
+    if (in_array($id, $favoriters)) {
       return true;
     } else {
       return false;

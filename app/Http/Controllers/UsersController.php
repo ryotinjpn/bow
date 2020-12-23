@@ -29,7 +29,6 @@ class UsersController extends Controller
 
     public function update(Request $request)
     {
-        
         $user = Auth::user();
         $user->name = $request->name;
         $user->email = $request->email;

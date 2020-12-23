@@ -18,7 +18,10 @@
                         <a href="{{ action('UsersController@show', $post->user_id) }}"
                             class="user_name">{{ $post->user->name }}</a>
                     </div>
-                    @if (File::extension($post->picture) == 'jpeg' || File::extension($post->picture) == 'jpg' || File::extension($post->picture) == 'png' || File::extension($post->picture) == 'gif')
+                    @if (File::extension($post->picture) == 'jpeg'
+                        || File::extension($post->picture) == 'jpg' 
+                        || File::extension($post->picture) == 'png' 
+                        || File::extension($post->picture) == 'gif')
                         <img src="{{ $post->picture }}" width="100%" height="100%">
                     @else
                         <video src="{{ $post->picture }}" width="100%" height="100%" controls="controls"></video>
@@ -48,21 +51,20 @@
                     </form>
                 </div>
                 <div>
-                    @forelse ($post->comments as $comment)
+                    @foreach ($post->comments as $comment)
                         <div class="user_timeline">
                             @if (empty($comment->user->image))
-                                <a href="{{ action('UsersController@show', $comment->user_id) }}"><img
-                                        src="/images/usericon.png" class="icon_image_feed"></a>
+                                <a href="{{ action('UsersController@show', $comment->user_id) }}">
+                                    <img src="/images/usericon.png" class="icon_image_feed"></a>
                             @else
-                                <a href="{{ action('UsersController@show', $comment->user_id) }}"><img
-                                        src="{{ $comment->user->image }}" class="icon_image_feed"></a>
+                                <a href="{{ action('UsersController@show', $comment->user_id) }}">
+                                    <img src="{{ $comment->user->image }}" class="icon_image_feed"></a>
                             @endif
                             <a href="{{ action('UsersController@show', $comment->user_id) }}"
                                 class="user_name">{{ $comment->user->name }}</a>
                             {{ $comment->text }}
                         </div>
-                    @empty
-                    @endforelse
+                    @endforeach
                 </div>
             </div>
         </div>
