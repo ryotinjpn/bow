@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,11 +13,11 @@ class Favorite extends Model
 
   public function post()
   {
-    return $this->belongsTo('App\Post');
+    return $this->belongsTo('App\Model\Post');
   }
 
   public function user()
   {
-    return $this->belongsTo('App\User');
+    return $this->belongsTo('App\Model\User');
   }
 }

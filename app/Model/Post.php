@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
@@ -16,22 +16,22 @@ class Post extends Model
 
   public function comments()
   {
-    return $this->hasMany('App\Comment');
+    return $this->hasMany('App\Model\Comment');
   }
 
   public function user()
   {
-    return $this->belongsTo('App\User');
+    return $this->belongsTo('App\Model\User');
   }
 
   public function likes()
   {
-    return $this->hasMany('App\Like', 'post_id');
+    return $this->hasMany('App\Model\Like', 'post_id');
   }
 
   public function favorites()
   {
-    return $this->hasMany('App\Favorite', 'post_id');
+    return $this->hasMany('App\Model\Favorite', 'post_id');
   }
 
   public function isLikedByAuthUser()
