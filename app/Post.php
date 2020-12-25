@@ -11,7 +11,7 @@ class Post extends Model
   protected $fillable = [
     'content',
     'picture',
-    'user_id'
+    'user_id',
   ];
 
   public function comments()
@@ -34,7 +34,7 @@ class Post extends Model
     return $this->hasMany('App\Favorite', 'post_id');
   }
 
-  public function is_liked_by_auth_user()
+  public function isLikedByAuthUser()
   {
     $id = Auth::id();
 
@@ -45,12 +45,13 @@ class Post extends Model
 
     if (in_array($id, $likers)) {
       return true;
-    } else {
+    }
+    else {
       return false;
     }
   }
 
-  public function is_favorited_by_auth_user()
+  public function isFavoritedByAuthUser()
   {
     $id = Auth::id();
 
@@ -61,7 +62,8 @@ class Post extends Model
 
     if (in_array($id, $favoriters)) {
       return true;
-    } else {
+    }
+    else {
       return false;
     }
   }
