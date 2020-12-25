@@ -6,9 +6,11 @@
     <div class="center">
         <div class="form-wrapper">
             <h1>{{ __('ユーザー情報編集') }}</h1>
+
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
+            
             <form method="post" action="{{ url('/users/edit') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-item">

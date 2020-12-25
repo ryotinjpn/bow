@@ -65,7 +65,7 @@
                                                     class="user_name">{{ $post->user->name }}</a>
                                             </div>
                                             <div>
-                                                @if ($post->is_favorited_by_auth_user())
+                                                @if ($post->isFavoritedByAuthUser())
                                                     <a href="{{ route('posts.unfavorite', ['id' => $post->id]) }}"
                                                         class="fas fa-bookmark"></a>
                                                 @else
@@ -83,7 +83,7 @@
                                         @endif
                                         <div>{{ $post->content }}</div>
                                         <div>
-                                            @if ($post->is_liked_by_auth_user())
+                                            @if ($post->isLikedByAuthUser())
                                                 <a href="{{ route('posts.unlike', ['id' => $post->id]) }}"
                                                     class="glyphicon glyphicon-heart">{{ $post->likes->count() }}</a>
                                             @else

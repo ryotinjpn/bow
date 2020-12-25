@@ -9,15 +9,18 @@
                 <div>
                     <div class="user_timeline">
                         @if (empty($post->user->image))
-                            <a href="{{ action('UsersController@show', $post->user_id) }}"><img src="/images/usericon.png"
-                                    class="icon_image_feed"></a>
+                            <a href="{{ action('UsersController@show', $post->user_id) }}">
+                                <img src="/images/usericon.png" class="icon_image_feed">
+                            </a>
                         @else
-                            <a href="{{ action('UsersController@show', $post->user_id) }}"><img
-                                    src="{{ $post->user->image }}" class="icon_image_feed"></a>
+                            <a href="{{ action('UsersController@show', $post->user_id) }}">
+                                <img src="{{ $post->user->image }}" class="icon_image_feed">
+                            </a>
                         @endif
-                        <a href="{{ action('UsersController@show', $post->user_id) }}"
-                            class="user_name">{{ $post->user->name }}</a>
+
+                        <a href="{{ action('UsersController@show', $post->user_id) }}"class="user_name">{{ $post->user->name }}</a>
                     </div>
+
                     @if (File::extension($post->picture) == 'jpeg'
                         || File::extension($post->picture) == 'jpg' 
                         || File::extension($post->picture) == 'png' 
@@ -26,13 +29,12 @@
                     @else
                         <video src="{{ $post->picture }}" width="100%" height="100%" controls="controls"></video>
                     @endif
+
                     <div>
-                        @if ($post->is_liked_by_auth_user())
-                            <a href="{{ route('posts.unlike', ['id' => $post->id]) }}"
-                                class="glyphicon glyphicon-heart">{{ $post->likes->count() }}</a>
+                        @if ($post->isLikedByAuthUser())
+                            <a href="{{ route('posts.unlike', ['id' => $post->id]) }}" class="glyphicon glyphicon-heart">{{ $post->likes->count() }}</a>
                         @else
-                            <a href="{{ route('posts.like', ['id' => $post->id]) }}"
-                                class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
+                            <a href="{{ route('posts.like', ['id' => $post->id]) }}" class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
                         @endif
                     </div>
                     <div>{{ $post->content }}</div>
@@ -43,9 +45,9 @@
                         {{ csrf_field() }}
                         <div class="comment_form">
                             <div class="form-item">
-                                <textarea placeholder="コメントを書く" name="text" id="comment_text"
-                                    value="{{ old('text') }}"></textarea>
+                                <textarea placeholder="コメントを書く" name="text" id="comment_text" value="{{ old('text') }}"></textarea>
                             </div>
+
                             <input type="submit" name="commit" value="投稿" class="btn_comment" data-disable-with="投稿">
                         </div>
                     </form>
@@ -55,18 +57,24 @@
                         <div class="user_timeline">
                             @if (empty($comment->user->image))
                                 <a href="{{ action('UsersController@show', $comment->user_id) }}">
-                                    <img src="/images/usericon.png" class="icon_image_feed"></a>
+                                    <img src="/images/usericon.png" class="icon_image_feed">
+                                </a>
                             @else
                                 <a href="{{ action('UsersController@show', $comment->user_id) }}">
-                                    <img src="{{ $comment->user->image }}" class="icon_image_feed"></a>
+                                    <img src="{{ $comment->user->image }}" class="icon_image_feed">
+                                </a>
                             @endif
+
                             <a href="{{ action('UsersController@show', $comment->user_id) }}"
-                                class="user_name">{{ $comment->user->name }}</a>
+                                class="user_name">{{ $comment->user->name }}
+                            </a>
                             {{ $comment->text }}
                         </div>
                     @endforeach
                 </div>
             </div>
         </div>
-        <script src="/js/main.js"></script>
-    @endsection
+    </div>
+    
+    <script src="/js/main.js"></script>
+@endsection
