@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Like;
+use App\Model\Like;
 use Auth;
 
 class LikesController extends Controller
