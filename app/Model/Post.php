@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
-use App\Like;
+use App\Model\Like;
 
 class Post extends Model
 {
@@ -34,37 +34,32 @@ class Post extends Model
     return $this->hasMany('App\Model\Favorite', 'post_id');
   }
 
-  public function isLikedByAuthUser()
+  public static function getAuthId()
   {
-    $id = Auth::id();
-
-    $likers = array();
-    foreach ($this->likes as $like) {
-      array_push($likers, $like->user_id);
-    }
-
-    if (in_array($id, $likers)) {
-      return true;
-    }
-    else {
-      return false;
-    }
+    return  Auth::id();
   }
 
-  public function isFavoritedByAuthUser()
+  public function getLikes()
   {
-    $id = Auth::id();
+    return $this->likes;
+  }
 
-    $favoriters = array();
-    foreach ($this->favorites as $favorite) {
-      array_push($favoriters, $favorite->user_id);
-    }
+  public function getFavorites()
+  {
+    return $this->favorites;
+  }
 
-    if (in_array($id, $favoriters)) {
-      return true;
-    }
-    else {
-      return false;
-    }
+  public function isLikedByAuthUser() :bool
+  {
+    $id = self::getAuthId();
+    $likes = $this->getLikes();
+    return $likes->contains('user_id', $id);
+  }
+
+  public function isFavoritedByAuthUser() :bool
+  {
+    $id = self::getAuthId();
+    $favorites = $this->getFavorites();
+    return $favorites->contains('user_id', $id);
   }
 }
