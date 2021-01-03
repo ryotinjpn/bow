@@ -20,8 +20,6 @@ class FavoritesController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        session()->flash('success', 'You Favorited the Post.');
-
         return redirect()->back();
     }
 
@@ -29,8 +27,6 @@ class FavoritesController extends Controller
     {
         $like = Favorite::where('post_id', $id)->where('user_id', Auth::id())->first();
         $like->delete();
-
-        session()->flash('success', 'You Unfavorited the Post.');
 
         return redirect()->back();
     }
