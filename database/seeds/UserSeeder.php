@@ -19,6 +19,6 @@ class UserSeeder extends Seeder
             'youtube' => 'https://www.youtube.com/',
         ]); 
 
-        factory(App\User::class, 30)->create();
+        factory(App\Model\User::class, 30)->create();
     }
 }
