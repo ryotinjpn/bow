@@ -8,17 +8,27 @@
             <div class="post_view">
                 <div>
                     <div class="user_timeline">
-                        @if (empty($post->user->image))
-                            <a href="{{ action('UsersController@show', $post->user_id) }}">
-                                <img src="/images/usericon.png" class="icon_image_feed">
-                            </a>
-                        @else
-                            <a href="{{ action('UsersController@show', $post->user_id) }}">
-                                <img src="{{ $post->user->image }}" class="icon_image_feed">
-                            </a>
-                        @endif
-
-                        <a href="{{ action('UsersController@show', $post->user_id) }}"class="user_name">{{ $post->user->name }}</a>
+                        <div class="user_image_name">
+                            @if (empty($post->user->image))
+                                <a href="{{ action('UsersController@show', $post->user_id) }}"><img
+                                        src="/images/usericon.png" class="icon_image_feed"></a>
+                            @else
+                                <a href="{{ action('UsersController@show', $post->user_id) }}"><img
+                                        src="{{ $post->user->image }}" class="icon_image_feed"></a>
+                            @endif
+                            
+                            <a href="{{ action('UsersController@show', $post->user_id) }}"
+                                class="user_name">{{ $post->user->name }}</a>
+                        </div>
+                        <div>
+                            @if ($post->isFavoritedByAuthUser())
+                                <a href="{{ route('posts.unfavorite', ['id' => $post->id]) }}"
+                                    class="fas fa-bookmark"></a>
+                            @else
+                                <a href="{{ route('posts.favorite', ['id' => $post->id]) }}"
+                                    class="far fa-bookmark fav"></a>
+                            @endif
+                        </div>
                     </div>
 
                     @if (File::extension($post->picture) == 'jpeg'
