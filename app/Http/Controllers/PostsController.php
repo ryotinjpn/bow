@@ -10,31 +10,17 @@ use Storage;
 
 class PostsController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
     public function store(PostRequest $request)
     {
-        $post = new Post();
-        $post->content = $request->content;
-
-        $file = $request->file('picture');
-        $path = Storage::disk('s3')->put('/', $file, 'public');
-        $post->picture = Storage::disk('s3')->url($path);
-        //ローカル保存
-        /* $file = $request->file('picture')->getClientOriginalName(); */
-        /* $request->file('picture')->storeAs('public',$file); */
-        /* $post->picture = $file; */
-
-        $post->user_id = Auth::user()->id;
+        $path = Storage::disk('s3')->put('/', $request->file('picture'), 'public');
+        
+        $post = new Post([
+            'content' => $request->content,
+            'picture' => Storage::disk('s3')->url($path),
+            'user_id' => Auth::user()->id,
+        ]);
         $post->save();
+
         return redirect('/');
     }
 
@@ -44,20 +30,5 @@ class PostsController extends Controller
         return view('posts.show', [
             'post' => $post
         ]);
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

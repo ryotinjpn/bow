@@ -18,7 +18,11 @@ class UsersController extends Controller
     public function show($id)
     {
         $posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
-        return view('users.show', ['user' => User::findOrFail($id), 'posts' => $posts]);
+
+        return view('users.show', [
+            'user'  => User::findOrFail($id), 
+            'posts' => $posts
+        ]);
     }
 
     public function edit()
@@ -29,18 +33,17 @@ class UsersController extends Controller
 
     public function update(Request $request)
     {
-        $user = Auth::user();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->profile = $request->profile;
-
-        $file = $request->file('image');
-        $path = Storage::disk('s3')->put('/', $file, 'public');
-        $user->image = Storage::disk('s3')->url($path);
-
-        $user->youtube = $request->youtube;
+        $path = Storage::disk('s3')->put('/', $$request->file('image'), 'public');
+        
+        $user = Auth::user([
+            'name'    => $request->name,
+            'email'   => $request->email,
+            'profile' => $request->profile,
+            'image'   => Storage::disk('s3')->url($path),
+            'youtube' => $request->youtube,
+        ]);
         $user->save();
 
-        return redirect(url('/users/edit'))->with('success', '保存しました。');
+        return redirect(url('users/edit'))->with('success', '保存しました。');
     }
 }
