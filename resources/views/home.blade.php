@@ -53,7 +53,7 @@
                                 @forelse ($posts as $post)
                                     <li>
                                         <div class="user_timeline">
-                                            <div>
+                                            <div class="user_image_name">
                                                 @if (empty($post->user->image))
                                                     <a href="{{ action('UsersController@show', $post->user_id) }}"><img
                                                             src="/images/usericon.png" class="icon_image_feed"></a>
