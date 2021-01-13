@@ -39,6 +39,7 @@
 
                             <input type="submit" value="投稿する" class="btn_post">
                         </form>
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -57,14 +58,16 @@
                                         <div class="user_timeline">
                                             <div class="user_image_name">
                                                 @if (empty($post->user->image))
-                                                    <a href="{{ url('users/' . $post->user_id) }}"><img
-                                                            src="/images/usericon.png" class="icon_image_feed"></a>
+                                                    <a href="{{ url('users/' . $post->user_id) }}">
+                                                        <img src="/images/usericon.png" class="icon_image_feed">
+                                                    </a>
                                                 @else
-                                                    <a href="{{ url('users/' . $post->user_id) }}"><img
-                                                            src="{{ $post->user->image }}" class="icon_image_feed"></a>
+                                                    <a href="{{ url('users/' . $post->user_id) }}">
+                                                        <img src="{{ $post->user->image }}" class="icon_image_feed">
+                                                    </a>
                                                 @endif
-                                                <a href="{{ url('users/' . $post->user_id) }}"
-                                                    class="user_name">{{ $post->user->name }}</a>
+
+                                                <a href="{{ url('users/' . $post->user_id) }}" class="user_name">{{ $post->user->name }}</a>
                                             </div>
                                             <div>
                                                 @if ($post->isFavoritedByAuthUser())
@@ -94,7 +97,9 @@
                                                 <a href="{{ url('posts/like/' . $post->id) }}" class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
                                             @endif
                                         </div>
+
                                         <a class="" href="{{ url('posts/' . $post->id) }}">コメントを見る</a>
+
                                         <div>{{ $post->created_at->diffForHumans() }}</div>
                                     </li>
                                 @empty
@@ -113,10 +118,12 @@
                                         <img src="{{ $user->image }}" class="icon_image_feed">
                                     </a>
                                 @endif
+
                                 <a href="{{ url('users/' . $user->id) }}" class="user_name">{{ $user->name }}</a>
                             </div>
                             <div class="user_home_index">
                                 <h5>おすすめ</h5>
+
                                 <a href="{{ url('users') }}">すべてを見る</a>
                             </div>
                             <div class="user_home_user">
@@ -134,6 +141,7 @@
                                                             <img src="{{ $user->image }}" class="icon_image_feed">
                                                         </a>
                                                     @endif
+
                                                     <a href="{{ url('users/' . $user->id) }}" class="user_name">{{ $user->name }}</a>
                                                 @endunless
                                             </div>

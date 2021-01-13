@@ -10,23 +10,22 @@
                     <div class="user_timeline">
                         <div class="user_image_name">
                             @if (empty($post->user->image))
-                                <a href="{{ action('UsersController@show', $post->user_id) }}"><img
-                                        src="/images/usericon.png" class="icon_image_feed"></a>
+                                <a href="{{ url('users/' . $post->user_id) }}">
+                                    <img src="/images/usericon.png" class="icon_image_feed">
+                                </a>
                             @else
-                                <a href="{{ action('UsersController@show', $post->user_id) }}"><img
-                                        src="{{ $post->user->image }}" class="icon_image_feed"></a>
+                                <a href="{{ url('users/' . $post->user_id) }}">
+                                    <img src="{{ $post->user->image }}" class="icon_image_feed">
+                                </a>
                             @endif
                             
-                            <a href="{{ action('UsersController@show', $post->user_id) }}"
-                                class="user_name">{{ $post->user->name }}</a>
+                            <a href="{{ url('users/' . $post->user_id) }}" class="user_name">{{ $post->user->name }}</a>
                         </div>
                         <div>
                             @if ($post->isFavoritedByAuthUser())
-                                <a href="{{ route('posts.unfavorite', ['id' => $post->id]) }}"
-                                    class="fas fa-bookmark"></a>
+                                <a href="{{ url('posts/unfavorite/' . $post->id) }}" class="fas fa-bookmark"></a>
                             @else
-                                <a href="{{ route('posts.favorite', ['id' => $post->id]) }}"
-                                    class="far fa-bookmark fav"></a>
+                                <a href="{{ url('posts/favorite/' . $post->id) }}" class="far fa-bookmark fav"></a>
                             @endif
                         </div>
                     </div>
@@ -42,9 +41,9 @@
 
                     <div>
                         @if ($post->isLikedByAuthUser())
-                            <a href="{{ route('posts.unlike', ['id' => $post->id]) }}" class="glyphicon glyphicon-heart">{{ $post->likes->count() }}</a>
+                            <a href="{{ url('posts/unlike/' . $post->id) }}" class="glyphicon glyphicon-heart">{{ $post->likes->count() }}</a>
                         @else
-                            <a href="{{ route('posts.like', ['id' => $post->id]) }}" class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
+                            <a href="{{ url('posts/like/' . $post->id) }}" class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
                         @endif
                     </div>
                     <div>{{ $post->content }}</div>
@@ -66,17 +65,16 @@
                     @foreach ($post->comments as $comment)
                         <div class="user_timeline">
                             @if (empty($comment->user->image))
-                                <a href="{{ action('UsersController@show', $comment->user_id) }}">
+                                <a href="{{ url('users/' . $comment->user_id) }}">
                                     <img src="/images/usericon.png" class="icon_image_feed">
                                 </a>
                             @else
-                                <a href="{{ action('UsersController@show', $comment->user_id) }}">
+                                <a href="{{ url('users/' . $comment->user_id) }}">
                                     <img src="{{ $comment->user->image }}" class="icon_image_feed">
                                 </a>
                             @endif
 
-                            <a href="{{ action('UsersController@show', $comment->user_id) }}"
-                                class="user_name">{{ $comment->user->name }}
+                            <a href="{{ url('users/' . $comment->user_id) }}" class="user_name">{{ $comment->user->name }}
                             </a>
                             {{ $comment->text }}
                         </div>

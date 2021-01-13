@@ -22,13 +22,14 @@
                 <li>
                     <div class="user_timeline">
                         @if (empty($post->user->image))
-                            <a href="{{ action('UsersController@show', $post->user_id) }}"><img src="/images/usericon.png" class="icon_image_feed"></a>
+                            <a href="{{ url('users/' . $post->user_id) }}"><img src="/images/usericon.png" class="icon_image_feed"></a>
                         @else
-                            <a href="{{ action('UsersController@show', $post->user_id) }}"><img src="{{ $post->user->image }}" class="icon_image_feed"></a>
+                            <a href="{{ url('users/' . $post->user_id) }}"><img src="{{ $post->user->image }}" class="icon_image_feed"></a>
                         @endif
 
-                        <a href="{{ action('UsersController@show', $post->user_id) }}" class="user_name">{{ $post->user->name }}</a>
+                        <a href="{{ url('users/' . $post->user_id) }}" class="user_name">{{ $post->user->name }}</a>
                     </div>
+
                     @if (File::extension($post->picture) == 'jpeg'
                         || File::extension($post->picture) == 'jpg'
                         || File::extension($post->picture) == 'png'
@@ -37,11 +38,12 @@
                     @else
                         <video src="{{ $post->picture }}" width="100%" height="100%" controls="controls"></video>
                     @endif
+
                     <div>
                         @if ($post->isLikedByAuthUser())
-                            <a href="{{ route('posts.unlike', ['id' => $post->id]) }}" class="glyphicon glyphicon-heart">{{ $post->likes->count() }}</a>
+                        <a href="{{ url('posts/unlike/' . $post->id) }}" class="glyphicon glyphicon-heart">{{ $post->likes->count() }}</a>
                         @else
-                            <a href="{{ route('posts.like', ['id' => $post->id]) }}" class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
+                        <a href="{{ url('posts/like/' . $post->id) }}" class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
                         @endif
                     </div>
                     <div>{{ $post->content }}</div>
