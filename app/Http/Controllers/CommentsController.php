@@ -12,10 +12,13 @@ class CommentsController extends Controller
 {
     public function store(Request $request, Post $post)
     {
-        $comment = new Comment(['text'=> $request->text]);
-        $comment->user_id = Auth::user()->id;
-        $comment->post_id = $post->id;
+        $comment = new Comment([
+            'text'    => $request->text,
+            'user_id' => Auth::user()->id,
+            'post_id' => $post->id,
+        ]);
         $comment->save();
-        return redirect()->action('PostsController@show', $post);
+
+        return redirect()->url('posts/' . $post->id);
     }
 }
