@@ -11,7 +11,7 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
             
-            <form method="post" action="{{ url('/users/edit') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ url('users/edit') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-item">
                     <div style="text-align: left">ユーザー名</div>
@@ -33,7 +33,7 @@
                 <div class="form-item">
                     <div style="text-align: left">プロフィール画像</div>
 
-                    <input type="file" name="image" id="image">
+                    <input id="image" type="file" name="image" >
                 </div>
                 <div class="form-item">
                     <div style="text-align: left">YouTubeチャンネル</div>

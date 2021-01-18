@@ -34,16 +34,20 @@ class UsersController extends Controller
 
     public function update(Request $request)
     {
-        $path = Storage::disk('s3')->put('/', $$request->file('image'), 'public');
-        
-        $user = Auth::user([
+        if (isset($request->image)) {
+            $image = Storage::disk('s3')->url(Storage::disk('s3')->put('/', $request->file('image'), 'public'));
+        }
+        else {
+            $image = null;
+        }
+        User::where('id', Auth::user()->id)
+        ->update([
             'name'    => $request->name,
             'email'   => $request->email,
             'profile' => $request->profile,
-            'image'   => Storage::disk('s3')->url($path),
+            'image'   => $image,
             'youtube' => $request->youtube,
         ]);
-        $user->save();
 
         return redirect(url('users/edit'))->with('success', '保存しました。');
     }
