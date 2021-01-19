@@ -14,12 +14,11 @@ class PostsController extends Controller
     {
         $path = Storage::disk('s3')->put('/', $request->file('picture'), 'public');
         
-        $post = new Post([
+        Post::create([
             'content' => $request->content,
             'picture' => Storage::disk('s3')->url($path),
             'user_id' => Auth::user()->id,
         ]);
-        $post->save();
 
         return redirect('/');
     }
