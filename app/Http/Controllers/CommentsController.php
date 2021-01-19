@@ -19,6 +19,6 @@ class CommentsController extends Controller
         ]);
         $comment->save();
 
-        return redirect()->url('posts/' . $post->id);
+        return redirect('posts/' . $post->id);
     }
 }

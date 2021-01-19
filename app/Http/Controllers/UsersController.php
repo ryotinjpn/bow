@@ -14,7 +14,7 @@ class UsersController extends Controller
     {
         return view('users.index', [
             'users' => User::All()->shuffle(),
-            ]);
+        ]);
     }
 
     public function show($id)
@@ -48,6 +48,6 @@ class UsersController extends Controller
             'youtube' => $request->youtube,
         ]);
 
-        return redirect(url('users/edit'))->with('success', '保存しました。');
+        return redirect('users/edit')->with('success', '保存しました。');
     }
 }
