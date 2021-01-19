@@ -13,7 +13,7 @@ class PostsController extends Controller
     public function store(PostRequest $request)
     {
         $path = Storage::disk('s3')->put('/', $request->file('picture'), 'public');
-        
+
         Post::create([
             'content' => $request->content,
             'picture' => Storage::disk('s3')->url($path),
