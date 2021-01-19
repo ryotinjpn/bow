@@ -7,18 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Like extends Model
 {
     protected $fillable = [
-      'user_id',
-      'post_id',
+        'user_id',
+        'post_id',
     ];
 
     public function post()
     {
-      return $this->belongsTo('App\Model\Post');
+        return $this->belongsTo('App\Model\Post');
     }
 
     public function user()
     {
-      return $this->belongsTo('App\Model\User');
+        return $this->belongsTo('App\Model\User');
     }
-    
 }
