@@ -34,12 +34,11 @@ class UsersController extends Controller
 
     public function update(Request $request)
     {
+        $image = null;
         if (isset($request->image)) {
             $image = Storage::disk('s3')->url(Storage::disk('s3')->put('/', $request->file('image'), 'public'));
         }
-        else {
-            $image = null;
-        }
+
         User::where('id', Auth::user()->id)
         ->update([
             'name'    => $request->name,
