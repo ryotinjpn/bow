@@ -32,6 +32,11 @@ img {
   justify-content: space-between;
 }
 
+.user_image_name{
+  display: flex;
+  align-items: center;
+}
+
 .fa-bookmark {
   font-size: 18px;
 }

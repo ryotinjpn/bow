@@ -7,8 +7,10 @@
         <div class="center">
             <div class="top_image">
                 <img class="top_dog" src="images/dogtop.jpg">
+
                 <div class="top_image2">
                     <img class="top_logo" src="images/logo.png">
+
                     <a class="top_btn" href="{{ route('register') }}">{{ __('新規登録') }}</a>
                 </div>
             </div>
@@ -19,13 +21,12 @@
         <div>
             <div class="container">
                 <div class="main_view">
-
                     <div>
-                        <form method="post" action="{{ url('/posts') }}" enctype="multipart/form-data" class="post_form">
+                        <form method="post" action="{{ url('posts') }}" enctype="multipart/form-data" class="post_form">
                             {{ csrf_field() }}
                             <div class="form-item">
-                                <textarea id="form_caption" name="content"
-                                    placeholder="キャプションを書く">{{ old('content') }}</textarea>
+                                <textarea id="form_caption" name="content" placeholder="キャプションを書く">{{ old('content') }}</textarea>
+
                                 <span class="picture">
                                     <label class="picture_label" for="post_picture"><i
                                             class="far fa-image picture_icon fa_icon"></i>
@@ -35,8 +36,10 @@
                                     </label>
                                 </span>
                             </div>
+
                             <input type="submit" value="投稿する" class="btn_post">
                         </form>
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -53,45 +56,50 @@
                                 @forelse ($posts as $post)
                                     <li>
                                         <div class="user_timeline">
-                                            <div>
+                                            <div class="user_image_name">
                                                 @if (empty($post->user->image))
-                                                    <a href="{{ action('UsersController@show', $post->user_id) }}"><img
-                                                            src="/images/usericon.png" class="icon_image_feed"></a>
+                                                    <a href="{{ url('users/' . $post->user_id) }}">
+                                                        <img src="/images/usericon.png" class="icon_image_feed">
+                                                    </a>
                                                 @else
-                                                    <a href="{{ action('UsersController@show', $post->user_id) }}"><img
-                                                            src="{{ $post->user->image }}" class="icon_image_feed"></a>
+                                                    <a href="{{ url('users/' . $post->user_id) }}">
+                                                        <img src="{{ $post->user->image }}" class="icon_image_feed">
+                                                    </a>
                                                 @endif
-                                                <a href="{{ action('UsersController@show', $post->user_id) }}"
-                                                    class="user_name">{{ $post->user->name }}</a>
+
+                                                <a href="{{ url('users/' . $post->user_id) }}" class="user_name">{{ $post->user->name }}</a>
                                             </div>
                                             <div>
-                                                @if ($post->is_favorited_by_auth_user())
-                                                    <a href="{{ route('posts.unfavorite', ['id' => $post->id]) }}"
-                                                        class="fas fa-bookmark"></a>
+                                                @if ($post->isFavoritedByAuthUser())
+                                                    <a href="{{ url('posts/unfavorite/' . $post->id) }}" class="fas fa-bookmark"></a>
                                                 @else
-                                                    <a href="{{ route('posts.favorite', ['id' => $post->id]) }}"
-                                                        class="far fa-bookmark fav"></a>
+                                                    <a href="{{ url('posts/favorite/' . $post->id) }}" class="far fa-bookmark fav"></a>
                                                 @endif
                                             </div>
                                         </div>
-                                        @if (File::extension($post->picture) == 'jpeg' || File::extension($post->picture) == 'jpg' || File::extension($post->picture) == 'png' || File::extension($post->picture) == 'gif')
-                                            <a href="{{ action('PostsController@show', $post->id) }}"><img
-                                                    src="{{ $post->picture }}" width="100%" height="100%"></a>
+
+                                        @if (File::extension($post->picture) == 'jpeg' 
+                                            || File::extension($post->picture) == 'jpg' 
+                                            || File::extension($post->picture) == 'png' 
+                                            || File::extension($post->picture) == 'gif')
+                                            <a href="{{ url('posts/' . $post->id) }}">
+                                                <img src="{{ $post->picture }}" width="100%" height="100%">
+                                            </a>
                                         @else
-                                            <video src="{{ $post->picture }}" width="100%" height="100%"
-                                                controls="controls"></video>
+                                            <video src="{{ $post->picture }}" width="100%" height="100%" controls="controls"></video>
                                         @endif
+
                                         <div>{{ $post->content }}</div>
                                         <div>
-                                            @if ($post->is_liked_by_auth_user())
-                                                <a href="{{ route('posts.unlike', ['id' => $post->id]) }}"
-                                                    class="glyphicon glyphicon-heart">{{ $post->likes->count() }}</a>
+                                            @if ($post->isLikedByAuthUser())
+                                                <a href="{{ url('posts/unlike/' . $post->id) }}" class="glyphicon glyphicon-heart">{{ $post->likes->count() }}</a>
                                             @else
-                                                <a href="{{ route('posts.like', ['id' => $post->id]) }}"
-                                                    class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
+                                                <a href="{{ url('posts/like/' . $post->id) }}" class="glyphicon glyphicon-heart-empty">{{ $post->likes->count() }}</a>
                                             @endif
                                         </div>
-                                        <a class="" href="{{ action('PostsController@show', $post->id) }}">コメントを見る</a>
+
+                                        <a class="" href="{{ url('posts/' . $post->id) }}">コメントを見る</a>
+
                                         <div>{{ $post->created_at->diffForHumans() }}</div>
                                     </li>
                                 @empty
@@ -102,18 +110,21 @@
                         <div class="user_home">
                             <div class="user_home_info">
                                 @if (empty($user->image))
-                                    <a href="{{ action('UsersController@show', $user->id) }}"><img src="/images/usericon.png"
-                                            class="icon_image_feed"></a>
+                                    <a href="{{ url('users/' . $user->id) }}">
+                                        <img src="/images/usericon.png" class="icon_image_feed">
+                                    </a>
                                 @else
-                                    <a href="{{ action('UsersController@show', $user->id) }}"><img src="{{ $user->image }}"
-                                            class="icon_image_feed"></a>
+                                    <a href="{{ url('users/' . $user->id) }}">
+                                        <img src="{{ $user->image }}" class="icon_image_feed">
+                                    </a>
                                 @endif
-                                <a href="{{ action('UsersController@show', $user->id) }}"
-                                    class="user_name">{{ $user->name }}</a>
+
+                                <a href="{{ url('users/' . $user->id) }}" class="user_name">{{ $user->name }}</a>
                             </div>
                             <div class="user_home_index">
                                 <h5>おすすめ</h5>
-                                <a href="{{ action('UsersController@index') }}">すべてを見る</a>
+
+                                <a href="{{ url('users') }}">すべてを見る</a>
                             </div>
                             <div class="user_home_user">
                                 <ul>
@@ -122,14 +133,16 @@
                                             <div class="user_home_info">
                                                 @unless($user == Auth::user())
                                                     @if (empty($user->image))
-                                                        <a href="{{ action('UsersController@show', $user->id) }}"><img
-                                                                src="/images/usericon.png" class="icon_image_feed"></a>
+                                                        <a href="{{ url('users/' . $user->id) }}">
+                                                            <img src="/images/usericon.png" class="icon_image_feed">
+                                                        </a>
                                                     @else
-                                                        <a href="{{ action('UsersController@show', $user->id) }}"><img
-                                                                src="{{ $user->image }}" class="icon_image_feed"></a>
+                                                        <a href="{{ url('users/' . $user->id) }}">
+                                                            <img src="{{ $user->image }}" class="icon_image_feed">
+                                                        </a>
                                                     @endif
-                                                    <a href="{{ action('UsersController@show', $user->id) }}"
-                                                        class="user_name">{{ $user->name }}</a>
+
+                                                    <a href="{{ url('users/' . $user->id) }}" class="user_name">{{ $user->name }}</a>
                                                 @endunless
                                             </div>
                                         </li>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\Model\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
@@ -10,54 +10,23 @@ use Storage;
 
 class PostsController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
     public function store(PostRequest $request)
     {
-        $post = new Post();
-        $post->content = $request->content;
+        $path = Storage::disk('s3')->put('/', $request->file('picture'), 'public');
 
-        $file = $request->file('picture');
-        $path = Storage::disk('s3')->put('/', $file, 'public');
-        $post->picture = Storage::disk('s3')->url($path);
-        //ローカル保存
-        /* $file = $request->file('picture')->getClientOriginalName(); */
-        /* $request->file('picture')->storeAs('public',$file); */
-        /* $post->picture = $file; */
+        Post::create([
+            'content' => $request->content,
+            'picture' => Storage::disk('s3')->url($path),
+            'user_id' => Auth::user()->id,
+        ]);
 
-        $post->user_id = Auth::user()->id;
-        $post->save();
         return redirect('/');
     }
 
     public function show($id)
     {
-        $post = Post::find($id);
         return view('posts.show', [
-            'post' => $post
+            'post' => Post::find($id),
         ]);
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

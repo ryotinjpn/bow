@@ -14,20 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::get('/',           'HomeController@index')->name('home');
-Route::get('/posts',      'PostsController@index');
-Route::get('/posts/{id}', 'PostsController@show');
-Route::post('/posts',     'PostsController@store');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/users/index', 'UsersController@index');
-Route::get('/users/edit',  'UsersController@edit')->middleware('auth');
-Route::post('/users/edit', 'UsersController@update')->middleware('auth');
-Route::get('/users/{id}',  'UsersController@show');
+Route::get('posts',      'PostsController@index');
+Route::get('posts/{id}', 'PostsController@show');
+Route::post('posts',     'PostsController@store');
 
-Route::post('/posts/{post}/comments', 'CommentsController@store');
+Route::get('users',       'UsersController@index');
+Route::get('users/edit',  'UsersController@edit')->middleware('auth');
+Route::get('users/{id}',  'UsersController@show');
+Route::post('users/edit', 'UsersController@update')->middleware('auth');
 
-Route::get('/posts/like/{id}',   'LikesController@like')->name('posts.like');
-Route::get('/posts/unlike/{id}', 'LikesController@unlike')->name('posts.unlike');
+Route::post('posts/{post}/comments', 'CommentsController@store');
 
-Route::get('/posts/favorite/{id}',   'favoritesController@favorite')->name('posts.favorite');
-Route::get('/posts/unfavorite/{id}', 'favoritesController@unfavorite')->name('posts.unfavorite');
+Route::get('posts/like/{id}',   'LikesController@like')->name('posts.like');
+Route::get('posts/unlike/{id}', 'LikesController@unlike')->name('posts.unlike');
+
+Route::get('posts/favorite/{id}',   'favoritesController@favorite')->name('posts.favorite');
+Route::get('posts/unfavorite/{id}', 'favoritesController@unfavorite')->name('posts.unfavorite');

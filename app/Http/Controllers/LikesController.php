@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Like;
+use App\Model\Like;
 use Auth;
 
 class LikesController extends Controller
@@ -20,8 +20,6 @@ class LikesController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        session()->flash('success', 'You Liked the Post.');
-
         return redirect()->back();
     }
 
@@ -29,8 +27,6 @@ class LikesController extends Controller
     {
         $like = Like::where('post_id', $id)->where('user_id', Auth::id())->first();
         $like->delete();
-
-        session()->flash('success', 'You Unliked the Post.');
 
         return redirect()->back();
     }
